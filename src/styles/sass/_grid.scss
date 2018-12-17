@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+}
+
+// Container
+.container {
+  display: grid;
+  background: blue;
+  grid-template-columns: repeat(16,1fr);
+  grid-gap: $grip-grap;
+}
+
+// Columnas 16
+$class-col: col !default
+
+@for $i from 1 through $number-colum {
+  @for $j from 0 through ($number-colum + 1) {
+      .#{$class-col}-#{$i}-#{$j+1} {
+        background: red;
+        grid-column: #{$i} / #{$j + 1}
+      }
+  }
+
+}
+
+.fadeIn {
+  opacity: 0;
+  margin-left: -2%;
+  transition: all 0.5s linear;
+  &:hover {
+    opacity: 1;
+    margin-left:0;
+  }
+}
+
+@include generatorPM('pd',15);
+@include generatorPM('mg',15);

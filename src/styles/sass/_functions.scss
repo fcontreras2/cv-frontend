@@ -1,0 +1,25 @@
+$position: left right top bottom !default;
+$postion_short: l r t b;
+
+@mixin createDireccion($class, $prop, $pixel) {
+  .#{$class}-#{$pixel}{
+    #{$prop}: #{$pixel}px;
+  }
+
+  @for $i from 1 through length($position) {
+    $pos: nth($position, $i);
+    $short: nth($postion_short, $i);
+
+    .#{$class}#{$short}-#{$pixel} {
+      #{$prop}-#{$pos}: #{$pixel}px;
+    }
+  }
+}
+
+// Generator padding margin
+@mixin generatorPM($class, $loop) {
+  @for $i from 1 through $loop {
+    @include createDireccion('p','padding',$i);
+    @include createDireccion('m','margin',$i);
+  }
+}
